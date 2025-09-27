@@ -16,7 +16,7 @@ An intelligent resume screening system powered by machine learning that automati
 
 
 
-## 🌟 Features## 🌟 Features
+## 🌟 Features
 
 
 
@@ -36,7 +36,7 @@ An intelligent resume screening system powered by machine learning that automati
 
 
 
-## 🚀 Demo## 🚀 Demo
+## 🚀 Demo
 
 
 
@@ -44,25 +44,22 @@ An intelligent resume screening system powered by machine learning that automati
 
 ![AI Resume Matcher - Main Interface](demo/main-interface.png)
 
-**Live Demo**: [View Demo](https://your-demo-link.herokuapp.com) *(Replace with your actual demo link)*
 
 ### 📁 **File Upload Process**  
 
-![File Upload Demo](demo/file-upload-demo.png)## 📋 Table of Contents
+![File Upload Demo](demo/file-upload-demo.png)## 
 
 
 
-### 📊 **Results Dashboard**- [Features](#-features)
+### 📊 **Results Dashboard**
 
 ![Results Dashboard with AI Scoring](demo/results-dashboard.png)- [Demo](#-demo)
 
 - [Installation](#-installation)
 
-**🔗 Live Demo**: [Coming Soon - Deploy to Heroku/Railway] - [Usage](#-usage)
 
 **💻 Source Code**: [GitHub Repository](https://github.com/habibkhan099/ai-resume-matcher)- [How It Works](#-how-it-works)
 
-- [Project Structure](#-project-structure)
 
 ## 📋 Table of Contents- [Technology Stack](#-technology-stack)
 
@@ -194,8 +191,9 @@ An intelligent resume screening system powered by machine learning that automati
 
 - **Word Documents**: `.docx` files  
 
-- **Text Files**: `.txt` files## 🔍 How It Works
-
+- **Text Files**: `.txt` files
+- 
+- ## 🔍 How It Works
 
 
 ### Best Practices### Algorithm Overview
@@ -210,7 +208,6 @@ An intelligent resume screening system powered by machine learning that automati
 
    - TXT files read directly
 
-## 🔍 How It Works
 
 2. **Text Preprocessing**:
 
@@ -262,7 +259,6 @@ An intelligent resume screening system powered by machine learning that automati
 
 ```
 
-### Technical Details
 
 ## 📁 Project Structure
 
@@ -382,7 +378,6 @@ MAX_CONTENT_LENGTH=16777216  # 16MB max file sizeapp.config['UPLOAD_FOLDER'] = '
 
 ```
 
-### Application Settings
 
 ## 📊 Performance Metrics
 
@@ -397,22 +392,6 @@ app.config['UPLOAD_FOLDER'] = 'uploads/'- **File Support**: PDF (95%), DOCX (90%
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size- **Scalability**: Handles up to 50 resumes simultaneously
 
 ```
-
-## 🚀 Deployment
-
-## 📊 Performance Metrics
-
-### Heroku Deployment
-
-- **Processing Speed**: ~2-5 seconds for 10-20 resumes
-
-- **Accuracy**: 85-90% matching accuracy for well-formatted resumes1. **Install Heroku CLI**
-
-- **File Support**: PDF (95%), DOCX (90%), TXT (100%) success rates2. **Create Heroku app**
-
-- **Scalability**: Handles up to 50 resumes simultaneously   ```bash
-
-   heroku create your-app-name
 
 ## 🚀 Deployment   ```
 
@@ -532,67 +511,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - University: UET Taxila
 
-## 📈 Roadmap
-
-## 🙏 Acknowledgments
-
-- [ ] Add support for more file formats (RTF, ODT)
-
-- [Flask](https://flask.palletsprojects.com/) for the amazing web framework- [ ] Implement advanced NLP models (BERT, GPT)
-
-- [scikit-learn](https://scikit-learn.org/) for machine learning capabilities- [ ] Add user authentication and resume database
-
-- [Bootstrap](https://getbootstrap.com/) for the responsive UI components- [ ] Create REST API endpoints
-
-- [Font Awesome](https://fontawesome.com/) for beautiful icons- [ ] Add resume parsing for structured data extraction
-
-- [ ] Implement batch processing for large datasets
-
-## 📈 Roadmap- [ ] Add email integration for automated notifications
-
-
-
-- [ ] Add support for more file formats (RTF, ODT)## 🐛 Issues & Support
-
-- [ ] Implement advanced NLP models (BERT, GPT)
-
-- [ ] Add user authentication and resume databaseIf you encounter any issues or have questions:
-
-- [ ] Create REST API endpoints
-
-- [ ] Add resume parsing for structured data extraction1. Check the [Issues](https://github.com/habibkhan099/ai-resume-matcher/issues) section
-
-- [ ] Implement batch processing for large datasets2. Create a new issue with detailed information
-
-- [ ] Add email integration for automated notifications3. Contact me directly via email or LinkedIn
-
-
-
-## 🐛 Issues & Support## 📸 Screenshots
-
-
-
-If you encounter any issues or have questions:### Main Interface
-
-![Main Interface](demo/screenshot.png)
-
-1. Check the [Issues](https://github.com/habibkhan099/ai-resume-matcher/issues) section
-
-2. Create a new issue with detailed information### Results Dashboard
-
-3. Contact me directly via email or LinkedIn![Results Dashboard](demo/results.png)
-
-
-
-------
-
 
 
 ⭐ **Star this repository if you find it helpful!**⭐ **Star this repository if you find it helpful!**
 
 
 
-Made with ❤️ and ☕ by [Habib Ullah](https://github.com/habibkhan099)Made with ❤️ and ☕ by [Habib Ullah](https://github.com/habibkhan099)
+Made with ❤️ and ☕ by [Habib Ullah](https://github.com/habibkhan099)
 
 
 
