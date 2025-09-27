@@ -1,29 +1,53 @@
 
-# 🤖 AI Resume Matcher
+# 🤖 AI Resume Matcher - Smart Recruitment Tool
 
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://python.org)
-[![Flask](https://img.shields.io/badge/Flask-2.0%2B-green.svg)](https://flask.palletsprojects.com/)
-[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.0%2B-orange.svg)](https://scikit-learn.org/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://python.org)  
+[![Flask](https://img.shields.io/badge/Flask-2.0%2B-green.svg)](https://flask.palletsprojects.com/)  
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.0%2B-orange.svg)](https://scikit-learn.org/)  
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)  
 
-A smart resume screening tool powered by machine learning and NLP to match job descriptions with candidate resumes.
+An intelligent resume screening system powered by **machine learning** and **NLP** that automatically matches job descriptions with candidate resumes for smarter recruitment.
+
+---
 
 ## 🌟 Features
-- **AI Matching**: TF-IDF vectorization and cosine similarity
-- **File Support**: PDF, DOCX, TXT resumes
-- **Real-time Analysis**: Instant resume ranking
-- **Smart Analytics**: Similarity scoring and candidate ranking
-- **Responsive UI**: Drag-and-drop interface, mobile-friendly
-- **Easy Setup**: Simple installation
+- **🎯 AI-Powered Matching**: TF-IDF vectorization + cosine similarity  
+- **📁 Multiple Formats**: Supports PDF, DOCX, and TXT resumes  
+- **⚡ Real-time Processing**: Instant analysis and ranking  
+- **📊 Smart Analytics**: Similarity scoring and candidate ranking  
+- **🎨 Modern UI**: Responsive, drag-and-drop web interface  
+- **📱 Mobile Friendly**: Works on all devices  
+- **🔧 Easy Setup**: Simple installation & configuration  
+
+---
 
 ## 🚀 Demo
+### 📱 Main Interface  
 ![Main Interface](demo/main-interface.png)  
-![File Upload](demo/file-upload-demo.png)  
+
+### 📁 File Upload Process  
+![File Upload Demo](demo/file-upload-demo.png)  
+
+### 📊 Results Dashboard  
 ![Results Dashboard](demo/results-dashboard.png)  
 
-**Live Demo**: [Coming Soon]  
-**Source Code**: [GitHub](https://github.com/habibkhan099/ai-resume-matcher)
+---
 
+## 📋 Table of Contents
+- [Installation](#-installation)  
+- [Usage](#-usage)  
+- [How It Works](#-how-it-works)  
+- [Project Structure](#-project-structure)  
+- [Technology Stack](#-technology-stack)  
+- [Configuration](#-configuration)  
+- [Performance Metrics](#-performance-metrics)  
+- [Deployment](#-deployment)  
+- [Contributing](#-contributing)  
+- [License](#-license)  
+- [Author](#-author)  
+- [Acknowledgments](#-acknowledgments)  
+
+---
 ## 🛠️ Installation
 ### Prerequisites
 - Python 3.8+
