@@ -1,0 +1,13 @@
+We are seeking a Software Developer with strong experience in Python programming, Flask web framework, and machine learning. The ideal candidate should have:
+
+• 2+ years of Python development experience  
+• Knowledge of web frameworks (Flask, Django)
+• Experience with machine learning libraries (scikit-learn, pandas)
+• Frontend skills (HTML, CSS, JavaScript, Bootstrap)
+• Understanding of NLP and text processing
+• Strong problem-solving abilities
+• Bachelor's degree in Computer Science or related field
+
+Responsibilities include developing web applications, implementing ML algorithms, and creating user-friendly interfaces. The role involves working with resume screening systems, data analysis, and creating intuitive user experiences.
+
+Key Technologies: Python, Flask, scikit-learn, Bootstrap, HTML/CSS, JavaScript, Machine Learning, Natural Language Processing, TF-IDF, Cosine Similarity
