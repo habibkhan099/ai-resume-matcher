@@ -170,5 +170,5 @@ MIT License - see [LICENSE](LICENSE).
 - [Font Awesome](https://fontawesome.com/)
 
 ⭐ **Star this repo if you find it helpful!**  
-Made with ❤️ and ☕ by [Habib Ullah](https://github.com/habibkhan099)
-```
+Made by [Habib Ullah](https://github.com/habibkhan099)
+
