@@ -40,7 +40,7 @@ An intelligent resume screening system powered by machine learning that automati
 
 
 
-### 📱 **Main Interface**![AI Resume Matcher Demo](demo/screenshot.png)
+### 📱 **Main Interface**
 
 ![AI Resume Matcher - Main Interface](demo/main-interface.png)
 
