@@ -1,0 +1,41 @@
+{
+  "name": "AI Resume Matcher",
+  "description": "An intelligent resume screening system powered by machine learning",
+  "repository": "https://github.com/habibkhan099/ai-resume-matcher",
+  "logo": "https://your-logo-url.com/logo.png",
+  "keywords": ["python", "flask", "machine-learning", "resume", "hr", "recruitment"],
+  "image": "heroku/python",
+  "stack": "heroku-20",
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "addons": [],
+  "env": {
+    "FLASK_ENV": {
+      "description": "Flask environment",
+      "value": "production"
+    },
+    "SECRET_KEY": {
+      "description": "Secret key for Flask sessions",
+      "generator": "secret"
+    }
+  },
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "python -m pytest"
+      }
+    }
+  },
+  "scripts": {
+    "postdeploy": "echo 'Deploy completed successfully'"
+  }
+}

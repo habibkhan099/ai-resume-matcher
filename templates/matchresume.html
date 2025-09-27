@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Matcher - Smart Recruitment Tool</title>
+    <!-- Google Fonts for Professional Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-hover: #4f46e5;
+            --secondary-color: #64748b;
+            --success-color: #10b981;
+            --background-color: #f8fafc;
+            --card-background: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--text-primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-size: 0.95rem;
+        }
+
+        .feature-icon {
+            color: #10b981;
+        }
+
+        .main-card {
+            background: var(--card-background);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .main-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .card-header h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .card-body {
+            padding: 2.5rem;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .form-section h3 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control, .form-select {
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.25);
+        }
+
+        .file-upload-area {
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: white;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .file-upload-area:hover {
+            border-color: var(--primary-color);
+            background: #f8fafc;
+        }
+
+        .file-upload-area.dragover {
+            border-color: var(--primary-color);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+            border: none;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+        }
+
+        .btn-secondary {
+            background: var(--secondary-color);
+            border: none;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .results-section {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-radius: 15px;
+            border: 1px solid #e0f2fe;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .results-title {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .resume-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--success-color);
+            transition: transform 0.2s ease;
+        }
+
+        .resume-item:hover {
+            transform: translateX(5px);
+        }
+
+        .resume-filename {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .similarity-score {
+            display: inline-block;
+            background: var(--success-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .file-info {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner-border {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .card-body {
+                padding: 1.5rem;
+            }
+            
+            .form-section {
+                padding: 1rem;
+            }
+        }
+        .alert-info h2 {
+            margin-top: 0;
+            font-size: 1.25rem;
+            color: #27ae60; /* Teal for headings */
+        }
+        .alert-info ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .alert-info li {
+            background: #fff;
+            margin: 5px 0;
+            padding: 10px;
+            border-left: 4px solid #2ecc71; /* Teal border */
+            border-radius: 4px;
+        }
+        .uploaded-files-table {
+            display: none; /* Hidden by default */
+            margin-top: 15px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .uploaded-files-table th,
+        .uploaded-files-table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #dfe6e9;
+        }
+        .uploaded-files-table th {
+            background-color: #3498db; /* Blue header */
+            color: white;
+        }
+        .uploaded-files-table tr:nth-child(even) {
+            background-color: #f9fbfd; /* Light row shading */
+        }
+        .shortlist-input {
+            margin-top: 10px;
+            width: 100px;
+            display: inline-block;
+        }
+        @media (max-width: 768px) {
+            .main-card {
+                padding: 20px;
+                margin: 10px;
+            }
+            .header h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1><i class="fas fa-robot"></i> AI Resume Matcher</h1>
+            <p>Intelligent resume screening powered by machine learning</p>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <span>AI-Powered Matching</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <span>Multiple File Formats</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <span>Instant Results</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <span>Smart Ranking</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Card -->
+        <div class="main-card">
+            <div class="card-header">
+                <h2><i class="fas fa-search"></i> Resume Analysis Dashboard</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/matcher" enctype="multipart/form-data" id="resumeForm">
+                    <!-- Job Description Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-briefcase"></i> Job Requirements</h3>
+                        <div class="mb-3">
+                            <label for="job_description" class="form-label">Job Description *</label>
+                            <textarea class="form-control" id="job_description" name="job_description" rows="6" 
+                                placeholder="Paste your job description here. Include key skills, requirements, and responsibilities..." 
+                                required></textarea>
+                            <div class="form-text">Provide a detailed job description for better matching accuracy</div>
+                        </div>
+                    </div>
+
+                    <!-- Resume Upload Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-upload"></i> Resume Upload</h3>
+                        <div class="mb-3">
+                            <label for="resumes" class="form-label">Upload Resumes *</label>
+                            <div class="file-upload-area" onclick="document.getElementById('resumes').click()">
+                                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                <h5>Drag & Drop Files or Click to Browse</h5>
+                                <p class="text-muted">Supports PDF, DOCX, and TXT files</p>
+                                <input type="file" class="d-none" id="resumes" name="resumes" multiple required 
+                                       accept=".pdf,.docx,.txt">
+                            </div>
+                            <div id="fileList" class="mt-3"></div>
+                            <div class="form-text">Upload 5+ resumes for optimal results. Maximum 50 files.</div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-cogs"></i> Analysis Settings</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="shortlist_count" class="form-label">Number of Top Candidates</label>
+                                <select class="form-select" id="shortlist_count" name="shortlist_count">
+                                    <option value="3">Top 3 Candidates</option>
+                                    <option value="5" selected>Top 5 Candidates</option>
+                                    <option value="10">Top 10 Candidates</option>
+                                    <option value="15">Top 15 Candidates</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-magic"></i> Analyze Resumes
+                        </button>
+                    </div>
+
+                    <!-- Loading Spinner -->
+                    <div class="loading-spinner" id="loadingSpinner">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Analyzing...</span>
+                        </div>
+                        <p class="mt-2">Analyzing resumes with AI...</p>
+                    </div>
+                </form>
+                <!-- Results Section -->
+                {% if message %}
+                <div class="results-section">
+                    <div class="results-header">
+                        <h2 class="results-title"><i class="fas fa-trophy"></i> {{ message }}</h2>
+                    </div>
+                    
+                    <!-- Statistics -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">{{ total_uploaded }}</div>
+                            <div class="stat-label">Total Resumes</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">{{ top_resumes|length }}</div>
+                            <div class="stat-label">Shortlisted</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">{{ "%.0f"|format((similarity_scores[0] * 100) if similarity_scores else 0) }}%</div>
+                            <div class="stat-label">Top Match Score</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">{{ (txt_files|length + pdf_files|length + docx_files|length) }}</div>
+                            <div class="stat-label">Files Processed</div>
+                        </div>
+                    </div>
+
+                    <!-- Top Candidates -->
+                    <h3><i class="fas fa-star"></i> Top Candidates</h3>
+                    {% for index in range(top_resumes|length) %}
+                        <div class="resume-item">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <div class="resume-filename">
+                                        <i class="fas fa-user"></i> {{ top_resumes[index] }}
+                                    </div>
+                                    <div class="file-info">
+                                        <i class="fas fa-file"></i> 
+                                        {% if top_resumes[index].endswith('.pdf') %}PDF Document
+                                        {% elif top_resumes[index].endswith('.docx') %}Word Document
+                                        {% elif top_resumes[index].endswith('.txt') %}Text Document
+                                        {% endif %}
+                                        • Rank #{{ index + 1 }}
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="similarity-score">
+                                        {{ "%.0f"|format(similarity_scores[index] * 100) }}% Match
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <!-- File Summary -->
+                    <div class="mt-4">
+                        <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#fileSummary" aria-expanded="false">
+                            <i class="fas fa-list"></i> View All Uploaded Files
+                        </button>
+                        <div class="collapse mt-3" id="fileSummary">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        {% if pdf_files %}
+                                        <div class="col-md-4">
+                                            <h6><i class="fas fa-file-pdf text-danger"></i> PDF Files ({{ pdf_files|length }})</h6>
+                                            <ul class="list-unstyled">
+                                                {% for filename in pdf_files %}
+                                                    <li><small>{{ filename }}</small></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        {% endif %}
+                                        {% if docx_files %}
+                                        <div class="col-md-4">
+                                            <h6><i class="fas fa-file-word text-primary"></i> Word Files ({{ docx_files|length }})</h6>
+                                            <ul class="list-unstyled">
+                                                {% for filename in docx_files %}
+                                                    <li><small>{{ filename }}</small></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        {% endif %}
+                                        {% if txt_files %}
+                                        <div class="col-md-4">
+                                            <h6><i class="fas fa-file-alt text-success"></i> Text Files ({{ txt_files|length }})</h6>
+                                            <ul class="list-unstyled">
+                                                {% for filename in txt_files %}
+                                                    <li><small>{{ filename }}</small></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center text-white mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="mb-2">
+                            <i class="fas fa-code"></i> Built with Python, Flask & Machine Learning
+                        </p>
+                        <p class="mb-3">
+                            <a href="https://github.com/habibkhan099/ai-resume-matcher" target="_blank" class="text-white text-decoration-none me-3">
+                                <i class="fab fa-github"></i> View Source Code
+                            </a>
+                            <a href="https://github.com/habibkhan099" target="_blank" class="text-white text-decoration-none me-3">
+                                <i class="fab fa-github"></i> GitHub Profile
+                            </a>
+                            <a href="https://www.linkedin.com/in/engr-habib-ullah-565a562ab" target="_blank" class="text-white text-decoration-none me-3">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
+                            <a href="mailto:22-CP-62@students.uettaxila.edu.pk" class="text-white text-decoration-none">
+                                <i class="fas fa-envelope"></i> Contact
+                            </a>
+                        </p>
+                        <p class="mb-0">
+                            <small>&copy; 2025 AI Resume Matcher by Habib Ullah. Made with ❤️ for better recruitment.</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // File upload functionality
+        const fileInput = document.getElementById('resumes');
+        const fileList = document.getElementById('fileList');
+        const uploadArea = document.querySelector('.file-upload-area');
+        const form = document.getElementById('resumeForm');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+
+        // Handle file input change
+        fileInput.addEventListener('change', function() {
+            displaySelectedFiles();
+        });
+
+        // Drag and drop functionality
+        uploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            fileInput.files = files;
+            displaySelectedFiles();
+        });
+
+        // Display selected files
+        function displaySelectedFiles() {
+            const files = fileInput.files;
+            fileList.innerHTML = '';
+            
+            if (files.length > 0) {
+                const filesContainer = document.createElement('div');
+                filesContainer.className = 'mt-3';
+                
+                const title = document.createElement('h6');
+                title.innerHTML = `<i class="fas fa-files"></i> Selected Files (${files.length})`;
+                filesContainer.appendChild(title);
+                
+                const fileGrid = document.createElement('div');
+                fileGrid.className = 'row';
+                
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'col-md-6 col-lg-4 mb-2';
+                    
+                    let icon = 'fas fa-file';
+                    let color = 'text-secondary';
+                    
+                    if (file.name.endsWith('.pdf')) {
+                        icon = 'fas fa-file-pdf';
+                        color = 'text-danger';
+                    } else if (file.name.endsWith('.docx')) {
+                        icon = 'fas fa-file-word';
+                        color = 'text-primary';
+                    } else if (file.name.endsWith('.txt')) {
+                        icon = 'fas fa-file-alt';
+                        color = 'text-success';
+                    }
+                    
+                    fileItem.innerHTML = `
+                        <div class="d-flex align-items-center p-2 bg-light rounded">
+                            <i class="${icon} ${color} me-2"></i>
+                            <small class="text-truncate">${file.name}</small>
+                        </div>
+                    `;
+                    fileGrid.appendChild(fileItem);
+                }
+                
+                filesContainer.appendChild(fileGrid);
+                fileList.appendChild(filesContainer);
+            }
+        }
+
+        // Form submission with loading
+        form.addEventListener('submit', function(e) {
+            const files = fileInput.files;
+            const jobDescription = document.getElementById('job_description').value;
+            
+            if (files.length === 0) {
+                e.preventDefault();
+                alert('Please select at least one resume file.');
+                return;
+            }
+            
+            if (jobDescription.trim() === '') {
+                e.preventDefault();
+                alert('Please enter a job description.');
+                return;
+            }
+            
+            // Show loading spinner
+            loadingSpinner.style.display = 'block';
+            
+            // Scroll to loading spinner
+            loadingSpinner.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Smooth scrolling for results
+        {% if message %}
+        document.addEventListener('DOMContentLoaded', function() {
+            const resultsSection = document.querySelector('.results-section');
+            if (resultsSection) {
+                resultsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+        {% endif %}
+
+        // Copy result to clipboard
+        function copyResults() {
+            const results = document.querySelector('.results-section').innerText;
+            navigator.clipboard.writeText(results).then(function() {
+                alert('Results copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>
